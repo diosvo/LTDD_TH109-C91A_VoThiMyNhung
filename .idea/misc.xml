@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Web/android/ThucHanh/dv_grocery/app/src/main/res/drawable/button_bg.xml" value="0.27037037037037037" />
+        <entry key="..\:/Web/android/ThucHanh/dv_grocery/app/src/main/res/drawable/cursor_color.xml" value="0.19675925925925927" />
+        <entry key="..\:/Web/android/ThucHanh/dv_grocery/app/src/main/res/drawable/edit_text_bg.xml" value="0.27037037037037037" />
+        <entry key="..\:/Web/android/ThucHanh/dv_grocery/app/src/main/res/drawable/text_underline.xml" value="0.27037037037037037" />
+        <entry key="..\:/Web/android/ThucHanh/dv_grocery/app/src/main/res/layout-v28/activity_register.xml" value="0.20520833333333333" />
+        <entry key="..\:/Web/android/ThucHanh/dv_grocery/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Web/android/ThucHanh/dv_grocery/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Web/android/ThucHanh/dv_grocery/app/src/main/res/layout/content_main.xml" value="0.25" />
       </map>
     </option>
