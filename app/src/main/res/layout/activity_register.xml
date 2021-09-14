@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="24dp"
-            android:text="Register"
+            android:text="REGISTER"
             android:textColor="@color/primary"
             android:textFontWeight="1000"
             android:textSize="36sp"
@@ -44,7 +44,7 @@
             android:textColor="@color/black" />
 
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -68,7 +68,7 @@
             android:textColor="@color/black" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/email_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -92,7 +92,7 @@
             android:textColor="@color/black" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/password_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_bg"
@@ -109,12 +109,12 @@
 
         <!-- Actions -->
         <Button
-            android:id="@+id/btn_signup"
+            android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
             android:background="@drawable/button_bg"
-            android:text="Sign Up"
+            android:text="Register"
             android:textAllCaps="false"
             android:textSize="16sp" />
 
@@ -126,12 +126,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already Have an account?"
+                android:text="Already have an account?"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/btn_login"
+                android:id="@+id/txt_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
