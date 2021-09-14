@@ -22,16 +22,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to Grocery Store!"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="24dp"
-            android:text="LOGIN"
+            android:text="Login"
             android:textColor="@color/primary"
             android:textFontWeight="1000"
             android:textSize="36sp"
@@ -115,7 +107,7 @@
                 android:layout_marginLeft="8dp"
                 android:linksClickable="true"
                 android:text="Register"
-                android:textColor="@color/black"
+                android:textColor="@color/primary"
                 android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
