@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String id = task.getResult().getUser().getUid();
                 database.getReference().child("Users").child(id).setValue(user);
 
-                Toast.makeText(RegisterActivity.this, "Registration Successful!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(RegisterActivity.this, "Error:" + task.getException(), Toast.LENGTH_SHORT).show();
             }
