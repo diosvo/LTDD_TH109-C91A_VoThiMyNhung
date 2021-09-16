@@ -1,4 +1,4 @@
-package com.dv.grocery.ui.gallery;
+package com.dv.grocery.ui.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.dv.grocery.R;
 import com.dv.grocery.databinding.FragmentGalleryBinding;
 
 public class GalleryFragment extends Fragment {

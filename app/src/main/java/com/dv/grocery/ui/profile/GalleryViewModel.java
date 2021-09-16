@@ -1,4 +1,4 @@
-package com.dv.grocery.ui.gallery;
+package com.dv.grocery.ui.profile;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
