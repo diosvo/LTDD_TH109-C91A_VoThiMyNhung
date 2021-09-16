@@ -20,7 +20,6 @@ public class RegisterActivity extends AppCompatActivity {
     TextView login;
 
     FirebaseAuth auth;
-    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void initValues() {
         auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
 
         register = findViewById(R.id.btn_register);
         login = findViewById(R.id.txt_login);
@@ -80,10 +78,6 @@ public class RegisterActivity extends AppCompatActivity {
         // Create User
         auth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                UserModel user = new UserModel(full_name, userEmail, userPassword);
-                String id = task.getResult().getUser().getUid();
-                database.getReference().child("Users").child(id).setValue(user);
-
                 Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(RegisterActivity.this, "Error:" + task.getException(), Toast.LENGTH_SHORT).show();
