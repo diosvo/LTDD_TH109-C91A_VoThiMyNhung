@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         if (auth.getCurrentUser() != null) {
             progressBar.setVisibility(View.VISIBLE);
             Toast.makeText(this, "Please wait! You are already logged in.", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+            finish();
         }
 
         register = findViewById(R.id.btn_register_welcome);

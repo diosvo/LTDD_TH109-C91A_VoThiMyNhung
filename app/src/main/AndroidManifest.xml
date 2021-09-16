@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DGrocery">
         <activity
+            android:name=".HomeActivity"
+            android:exported="true" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
@@ -28,4 +31,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
