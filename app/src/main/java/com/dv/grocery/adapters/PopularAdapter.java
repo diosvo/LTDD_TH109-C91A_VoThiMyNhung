@@ -16,12 +16,12 @@ import com.dv.grocery.models.PopularProductModel;
 
 import java.util.List;
 
-public class PopularAdapters extends RecyclerView.Adapter<PopularAdapters.ViewHolder> {
+public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
 
     private final Context context;
     private final List<PopularProductModel> popularProductModelList;
 
-    public PopularAdapters(Context context, List<PopularProductModel> popularProductModelList) {
+    public PopularAdapter(Context context, List<PopularProductModel> popularProductModelList) {
         this.context = context;
         this.popularProductModelList = popularProductModelList;
     }
