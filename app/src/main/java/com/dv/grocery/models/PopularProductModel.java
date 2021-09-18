@@ -6,16 +6,18 @@ public class PopularProductModel {
     String price;
     String image;
     String group;
+    String type_name;
 
     public PopularProductModel() {
     }
 
-    public PopularProductModel(String name, String description, String price, String image, String group) {
+    public PopularProductModel(String name, String description, String price, String image, String group, String type_name) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.image = image;
         this.group = group;
+        this.type_name = type_name;
     }
 
     public String getName() {
@@ -56,5 +58,13 @@ public class PopularProductModel {
 
     public void setGroup(String group) {
         this.group = group;
+    }
+
+    public String getType_name() {
+        return type_name;
+    }
+
+    public void setType_name(String type_name) {
+        this.type_name = type_name;
     }
 }

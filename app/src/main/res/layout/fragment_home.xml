@@ -14,42 +14,21 @@
 
         <!-- Hello -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Hi, Dios!"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Bạn muốn mua gì hôm nay?" />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:orientation="horizontal">
+                android:text="Hi, Dios!"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/nav_cart"
-                    android:layout_width="56dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/button_bg"
-                    android:drawableRight="@drawable/ic_cart"
-                    tools:ignore="SpeakableTextPresentCheck" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bạn muốn mua gì hôm nay?" />
         </LinearLayout>
 
         <!-- Search Box -->

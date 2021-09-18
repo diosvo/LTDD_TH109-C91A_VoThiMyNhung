@@ -36,9 +36,8 @@ public class PopularAdapters extends RecyclerView.Adapter<PopularAdapters.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(context).load(popularProductModelList.get(position).getImage()).into(holder.popImage);
         holder.name.setText(popularProductModelList.get(position).getName());
-        holder.description.setText(popularProductModelList.get(position).getDescription());
         holder.price.setText(popularProductModelList.get(position).getPrice());
-        holder.group.setText(popularProductModelList.get(position).getGroup());
+        holder.typeName.setText(popularProductModelList.get(position).getType_name());
     }
 
     @Override
@@ -48,16 +47,15 @@ public class PopularAdapters extends RecyclerView.Adapter<PopularAdapters.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView popImage;
-        TextView name, description, price, group;
+        TextView name, description, price, typeName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             popImage = itemView.findViewById(R.id.popular_product_img);
             name = itemView.findViewById(R.id.popular_product_name);
-            description = itemView.findViewById(R.id.popular_product_desc);
             price = itemView.findViewById(R.id.popular_product_price);
-            group = itemView.findViewById(R.id.popular_product_group);
+            typeName = itemView.findViewById(R.id.popular_product_typeName);
         }
     }
 }
