@@ -5,15 +5,17 @@ public class PopularProductModel {
     String description;
     String price;
     String image;
+    String group;
 
     public PopularProductModel() {
     }
 
-    public PopularProductModel(String name, String description, String price, String image) {
+    public PopularProductModel(String name, String description, String price, String image, String group) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.image = image;
+        this.group = group;
     }
 
     public String getName() {
@@ -46,5 +48,13 @@ public class PopularProductModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }

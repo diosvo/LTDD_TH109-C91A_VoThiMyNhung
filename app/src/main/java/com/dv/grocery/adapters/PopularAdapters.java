@@ -38,6 +38,7 @@ public class PopularAdapters extends RecyclerView.Adapter<PopularAdapters.ViewHo
         holder.name.setText(popularProductModelList.get(position).getName());
         holder.description.setText(popularProductModelList.get(position).getDescription());
         holder.price.setText(popularProductModelList.get(position).getPrice());
+        holder.group.setText(popularProductModelList.get(position).getGroup());
     }
 
     @Override
@@ -47,7 +48,7 @@ public class PopularAdapters extends RecyclerView.Adapter<PopularAdapters.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView popImage;
-        TextView name, description, price;
+        TextView name, description, price, group;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +57,7 @@ public class PopularAdapters extends RecyclerView.Adapter<PopularAdapters.ViewHo
             name = itemView.findViewById(R.id.popular_product_name);
             description = itemView.findViewById(R.id.popular_product_desc);
             price = itemView.findViewById(R.id.popular_product_price);
+            group = itemView.findViewById(R.id.popular_product_group);
         }
     }
 }
