@@ -22,4 +22,27 @@
         android:name="com.dv.grocery.ui.category.CategoryFragment"
         android:label="@string/category"
         tools:layout="@layout/fragment_category" />
+
+    <fragment
+        android:id="@+id/nav_offers"
+        android:name="com.dv.grocery.OfferFragment"
+        android:label="@string/offers"
+        tools:layout="@layout/fragment_offer" />
+    <fragment
+        android:id="@+id/nav_new_products"
+        android:name="com.dv.grocery.NewProductFragment"
+        android:label="@string/new_products"
+        tools:layout="@layout/fragment_new_product" />
+
+    <fragment
+        android:id="@+id/nav_orders"
+        android:name="com.dv.grocery.MyOrderFragment"
+        android:label="@string/my_orders"
+        tools:layout="@layout/fragment_my_order" />
+
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.dv.grocery.MyCartFragment"
+        android:label="@string/my_cart"
+        tools:layout="@layout/fragment_my_cart" />
 </navigation>
