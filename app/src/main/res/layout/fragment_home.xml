@@ -33,7 +33,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="What would you buy today?" />
+                    android:text="Bạn muốn mua gì hôm nay?" />
             </LinearLayout>
 
             <LinearLayout
@@ -60,7 +60,7 @@
             android:layout_marginVertical="12dp"
             android:drawableLeft="@drawable/ic_search"
             android:drawablePadding="4dip"
-            android:hint="Search by product name"
+            android:hint="Tìm kiếm sản phẩm"
             android:inputType="text"
             android:minHeight="48dp" />
 
@@ -81,7 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Popular"
+                    android:text="Sản phẩm phổ biến"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -110,7 +110,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
+                android:layout_marginTop="8dp"
+
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -118,7 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Explore"
+                    android:text="Khám phá thêm"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -147,7 +148,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
@@ -155,7 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Recommend"
+                    android:text="Có thể bạn sẽ cần"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
