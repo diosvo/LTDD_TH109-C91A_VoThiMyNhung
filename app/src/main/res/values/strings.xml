@@ -20,4 +20,6 @@
     <string name="my_account">My Account</string>
     <string name="shopping">Shopping</string>
     <string name="see_all">See All</string>
+    <string name="popular_product">Popular Product</string>
+    <string name="description">Description</string>
 </resources>
