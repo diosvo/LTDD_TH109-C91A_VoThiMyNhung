@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1097922960345",
+    "project_id": "dv-grocery",
+    "storage_bucket": "dv-grocery.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097922960345:android:2f4dc8a334ecf8815b17c8",
+        "android_client_info": {
+          "package_name": "com.dv.grocery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1097922960345-epvcmcuo8b8qp4i2tk6ik408op57lug5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6saDXpGDdbPsSK0UPJY8gXFJlGRDZNIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1097922960345-epvcmcuo8b8qp4i2tk6ik408op57lug5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
