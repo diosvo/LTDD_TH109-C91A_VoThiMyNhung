@@ -16,6 +16,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="offers">Offers</string>
     <string name="new_products">New Products</string>
-    <string name="my_cart">My Cart</string>
-    <string name="my_orders">My Orders</string>
+    <string name="cart">Cart</string>
+    <string name="orders">Orders</string>
+    <string name="my_account">My Account</string>
+    <string name="shopping">Shopping</string>
 </resources>
