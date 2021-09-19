@@ -1,4 +1,4 @@
-package com.dv.grocery.model;
+package com.dv.grocery.models;
 
 public class UserModel {
     String fullName;

@@ -7,16 +7,17 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_profile">Profile</string>
-    <string name="menu_category">Category</string>
-    <string name="profile">Profile</string>
-    <string name="category">Category</string>
+    <string name="home">Trang chủ</string>
+    <string name="profile">Hồ sơ</string>
+    <string name="category">Phân loại</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="offers">Offers</string>
-    <string name="new_products">New Products</string>
-    <string name="cart">Cart</string>
-    <string name="orders">Orders</string>
-    <string name="my_account">My Account</string>
+    <string name="offers">Ưu đãi</string>
+    <string name="new_products">Sản phẩm mới</string>
+    <string name="cart">Giỏ hàng</string>
+    <string name="orders">Đơn hàng</string>
+    <string name="my_account">Tài khoản của tôi</string>
     <string name="shopping">Shopping</string>
+    <string name="see_all">Xem tất cả</string>
+    <string name="popular_product">Popular Product</string>
+    <string name="description">Description</string>
 </resources>
