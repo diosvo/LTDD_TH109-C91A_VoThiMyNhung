@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class HomeFragment extends Fragment {
+    ScrollView scrollView;
+    ProgressBar progressBar;
+
     RecyclerView popularRec, categoryRec, recommendedRec;
     FirebaseFirestore db;
 
@@ -46,6 +51,10 @@ public class HomeFragment extends Fragment {
         popularRec = root.findViewById(R.id.popular_products);
         categoryRec = root.findViewById(R.id.home_category);
         recommendedRec = root.findViewById(R.id.recommend_products);
+
+        scrollView = root.findViewById(R.id.home_scroll_view);
+        progressBar = root.findViewById(R.id.home_progress_bar);
+        showProgressBar();
 
         db = FirebaseFirestore.getInstance();
 
@@ -70,6 +79,7 @@ public class HomeFragment extends Fragment {
                         ProductModel popularProductModel = document.toObject(ProductModel.class);
                         popularProductsList.add(popularProductModel);
                         popularAdapter.notifyDataSetChanged();
+                        hideProgressBar();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
@@ -91,6 +101,7 @@ public class HomeFragment extends Fragment {
                         HomeCategoryModel homeCategoryModel = document.toObject(HomeCategoryModel.class);
                         categoryList.add(homeCategoryModel);
                         categoryAdapter.notifyDataSetChanged();
+                        hideProgressBar();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
@@ -112,10 +123,21 @@ public class HomeFragment extends Fragment {
                         ProductModel rcmProductModel = document.toObject(ProductModel.class);
                         rcmProductsList.add(rcmProductModel);
                         recommendedAdapter.notifyDataSetChanged();
+                        hideProgressBar();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
                 }
             });
+    }
+
+    private void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.GONE);
+    }
+
+    private void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
+        scrollView.setVisibility(View.VISIBLE);
     }
 }
