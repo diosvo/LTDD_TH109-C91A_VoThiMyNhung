@@ -24,36 +24,21 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <!-- Hello -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Chào buổi sáng," />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Dios 👋"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
             <!-- Search Box -->
             <EditText
                 android:id="@+id/search_box"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="12dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/edit_text_bg"
                 android:drawableLeft="@drawable/ic_search"
                 android:drawablePadding="4dip"
                 android:hint="Tìm kiếm sản phẩm"
                 android:inputType="text"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
 
             <!-- Popular Products -->
             <LinearLayout
