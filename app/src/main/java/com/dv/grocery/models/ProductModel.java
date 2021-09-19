@@ -1,6 +1,6 @@
 package com.dv.grocery.models;
 
-public class PopularProductModel {
+public class ProductModel {
     String name;
     String description;
     String price;
@@ -8,10 +8,10 @@ public class PopularProductModel {
     String group;
     String type_name;
 
-    public PopularProductModel() {
+    public ProductModel() {
     }
 
-    public PopularProductModel(String name, String description, String price, String image, String group, String type_name) {
+    public ProductModel(String name, String description, String price, String image, String group, String type_name) {
         this.name = name;
         this.description = description;
         this.price = price;

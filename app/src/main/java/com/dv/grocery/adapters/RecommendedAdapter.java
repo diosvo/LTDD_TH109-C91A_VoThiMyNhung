@@ -16,25 +16,24 @@ import com.dv.grocery.models.ProductModel;
 
 import java.util.List;
 
-public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
-
+public class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.ViewHolder>{
     private final Context context;
     private final List<ProductModel> productModelList;
 
-    public PopularAdapter(Context context, List<ProductModel> productModelList) {
+    public RecommendedAdapter(Context context, List<ProductModel> productModelList) {
         this.context = context;
         this.productModelList = productModelList;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.home_product_item, parent, false));
+    public RecommendedAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new RecommendedAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.home_product_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Glide.with(context).load(productModelList.get(position).getImage()).into(holder.popImage);
+        Glide.with(context).load(productModelList.get(position).getImage()).into(holder.rcmImage);
         holder.name.setText(productModelList.get(position).getName());
         holder.price.setText(productModelList.get(position).getPrice());
     }
@@ -45,15 +44,16 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView popImage;
+        ImageView rcmImage;
         TextView name, price;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            popImage = itemView.findViewById(R.id.home_product_img);
+            rcmImage = itemView.findViewById(R.id.home_product_img);
             name = itemView.findViewById(R.id.home_product_name);
             price = itemView.findViewById(R.id.home_product_price);
         }
     }
+
 }

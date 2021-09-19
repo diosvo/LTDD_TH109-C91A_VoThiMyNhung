@@ -14,8 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dv.grocery.R;
 import com.dv.grocery.adapters.HomeCategoryAdapter;
 import com.dv.grocery.adapters.PopularAdapter;
+import com.dv.grocery.adapters.RecommendedAdapter;
 import com.dv.grocery.models.HomeCategoryModel;
-import com.dv.grocery.models.PopularProductModel;
+import com.dv.grocery.models.ProductModel;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -24,35 +25,41 @@ import java.util.List;
 import java.util.Objects;
 
 public class HomeFragment extends Fragment {
-    RecyclerView popularRec, categoryRec;
+    RecyclerView popularRec, categoryRec, recommendedRec;
     FirebaseFirestore db;
 
     // Popular Products
-    List<PopularProductModel> popularProductList;
+    List<ProductModel> popularProductsList;
     PopularAdapter popularAdapter;
 
     // Category
     List<HomeCategoryModel> categoryList;
     HomeCategoryAdapter categoryAdapter;
 
+    // Recommend Products
+    List<ProductModel> rcmProductsList;
+    RecommendedAdapter recommendedAdapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         popularRec = root.findViewById(R.id.popular_products);
         categoryRec = root.findViewById(R.id.home_category);
+        recommendedRec = root.findViewById(R.id.recommend_products);
 
         db = FirebaseFirestore.getInstance();
 
         getPopularProducts();
         getHomeCategory();
+        getRecommendProducts();
 
         return root;
     }
 
     private void getPopularProducts() {
         popularRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-        popularProductList = new ArrayList<>();
-        popularAdapter = new PopularAdapter(getActivity(), popularProductList);
+        popularProductsList = new ArrayList<>();
+        popularAdapter = new PopularAdapter(getActivity(), popularProductsList);
         popularRec.setAdapter(popularAdapter);
 
         db.collection("PopularProducts")
@@ -60,8 +67,8 @@ public class HomeFragment extends Fragment {
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                        PopularProductModel popularProductModel = document.toObject(PopularProductModel.class);
-                        popularProductList.add(popularProductModel);
+                        ProductModel popularProductModel = document.toObject(ProductModel.class);
+                        popularProductsList.add(popularProductModel);
                         popularAdapter.notifyDataSetChanged();
                     }
                 } else {
@@ -84,6 +91,27 @@ public class HomeFragment extends Fragment {
                         HomeCategoryModel homeCategoryModel = document.toObject(HomeCategoryModel.class);
                         categoryList.add(homeCategoryModel);
                         categoryAdapter.notifyDataSetChanged();
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                }
+            });
+    }
+
+    private void getRecommendProducts() {
+        recommendedRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+        rcmProductsList = new ArrayList<>();
+        recommendedAdapter = new RecommendedAdapter(getActivity(), rcmProductsList);
+        recommendedRec.setAdapter(recommendedAdapter);
+
+        db.collection("RecommendProducts")
+            .get()
+            .addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                        ProductModel rcmProductModel = document.toObject(ProductModel.class);
+                        rcmProductsList.add(rcmProductModel);
+                        recommendedAdapter.notifyDataSetChanged();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
