@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
     tools:context=".ui.home.HomeFragment">
 
     <ProgressBar
@@ -34,14 +33,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hi, Dios!"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:text="Chào buổi sáng," />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Bạn muốn mua gì hôm nay?" />
+                    android:text="Dios 👋"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <!-- Search Box -->
