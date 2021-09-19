@@ -4,7 +4,7 @@
     android:layout_width="75dp"
     android:layout_height="77dp"
     android:layout_marginRight="8dp"
-    android:background="@drawable/home_category_border"
+    android:background="@drawable/border_product_item"
     android:padding="8dp"
     app:cardCornerRadius="8dp">
 
