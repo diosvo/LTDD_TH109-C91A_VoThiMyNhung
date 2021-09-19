@@ -78,6 +78,6 @@
         android:paddingHorizontal="4dp"
         android:paddingVertical="2dp"
         android:text="Sữa"
-        android:textColor="@color/dark_gray"
+        android:textColor="#3f3f3f"
         android:textSize="11dp" />
 </androidx.cardview.widget.CardView>

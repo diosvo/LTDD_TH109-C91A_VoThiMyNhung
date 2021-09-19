@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dv.grocery.R;
-import com.dv.grocery.adapters.PopularAdapters;
+import com.dv.grocery.adapters.HomeCategoryAdapter;
+import com.dv.grocery.adapters.PopularAdapter;
+import com.dv.grocery.models.HomeCategoryModel;
 import com.dv.grocery.models.PopularProductModel;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -22,23 +24,36 @@ import java.util.List;
 import java.util.Objects;
 
 public class HomeFragment extends Fragment {
-    RecyclerView popularRec;
+    RecyclerView popularRec, categoryRec;
     FirebaseFirestore db;
 
-    List<PopularProductModel> popularProductModelList;
-    PopularAdapters popularAdapters;
+    // Popular Products
+    List<PopularProductModel> popularProductList;
+    PopularAdapter popularAdapter;
+
+    // Category
+    List<HomeCategoryModel> categoryList;
+    HomeCategoryAdapter categoryAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        popularRec = root.findViewById(R.id.popular_products);
+        categoryRec = root.findViewById(R.id.home_category);
 
         db = FirebaseFirestore.getInstance();
-        popularRec = root.findViewById(R.id.popular_products);
 
+        getPopularProducts();
+        getHomeCategory();
+
+        return root;
+    }
+
+    private void getPopularProducts() {
         popularRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-        popularProductModelList = new ArrayList<>();
-        popularAdapters = new PopularAdapters(getActivity(), popularProductModelList);
-        popularRec.setAdapter(popularAdapters);
+        popularProductList = new ArrayList<>();
+        popularAdapter = new PopularAdapter(getActivity(), popularProductList);
+        popularRec.setAdapter(popularAdapter);
 
         db.collection("PopularProducts")
             .get()
@@ -46,14 +61,33 @@ public class HomeFragment extends Fragment {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                         PopularProductModel popularProductModel = document.toObject(PopularProductModel.class);
-                        popularProductModelList.add(popularProductModel);
-                        popularAdapters.notifyDataSetChanged();
+                        popularProductList.add(popularProductModel);
+                        popularAdapter.notifyDataSetChanged();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
                 }
             });
+    }
 
-        return root;
+    private void getHomeCategory() {
+        categoryRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+        categoryList = new ArrayList<>();
+        categoryAdapter = new HomeCategoryAdapter(getActivity(), categoryList);
+        categoryRec.setAdapter(categoryAdapter);
+
+        db.collection("HomeCategory")
+            .get()
+            .addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                        HomeCategoryModel homeCategoryModel = document.toObject(HomeCategoryModel.class);
+                        categoryList.add(homeCategoryModel);
+                        categoryAdapter.notifyDataSetChanged();
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 }
