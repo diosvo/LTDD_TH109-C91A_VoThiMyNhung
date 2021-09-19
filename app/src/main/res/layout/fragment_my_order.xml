@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MyOrderFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@mipmap/orders" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Orders" />
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Hiện tại bạn chưa có đơn hàng nào."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+</LinearLayout>

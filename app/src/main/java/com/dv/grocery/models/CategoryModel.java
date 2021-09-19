@@ -1,17 +1,19 @@
 package com.dv.grocery.models;
 
-public class HomeCategoryModel {
+public class CategoryModel {
     String name;
     String group;
     String image;
+    String description;
 
-    public HomeCategoryModel() {
+    public CategoryModel() {
     }
 
-    public HomeCategoryModel(String name, String group, String image) {
+    public CategoryModel(String name, String group, String image, String description) {
         this.name = name;
         this.group = group;
         this.image = image;
+        this.description = description;
     }
 
     public String getName() {
@@ -36,5 +38,13 @@ public class HomeCategoryModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

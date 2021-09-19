@@ -16,25 +16,26 @@ import com.dv.grocery.models.CategoryModel;
 
 import java.util.List;
 
-public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapter.ViewHolder> {
+public class NavCategoryAdapter extends RecyclerView.Adapter<NavCategoryAdapter.ViewHolder> {
     Context context;
     List<CategoryModel> categoryList;
 
-    public HomeCategoryAdapter(Context context, List<CategoryModel> categoryModelList) {
+    public NavCategoryAdapter(Context context, List<CategoryModel> categoryModelList) {
         this.context = context;
         this.categoryList = categoryModelList;
     }
 
     @NonNull
     @Override
-    public HomeCategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new HomeCategoryAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.home_category_item, parent, false));
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.nav_category_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeCategoryAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NavCategoryAdapter.ViewHolder holder, int position) {
         Glide.with(context).load(categoryList.get(position).getImage()).into(holder.catImage);
         holder.catName.setText(categoryList.get(position).getName());
+        holder.catDesc.setText(categoryList.get(position).getDescription());
     }
 
     @Override
@@ -44,13 +45,14 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView catImage;
-        TextView catName;
+        TextView catName, catDesc;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            catImage = itemView.findViewById(R.id.home_cat_img);
-            catName = itemView.findViewById(R.id.home_cat_name);
+            catImage = itemView.findViewById(R.id.cat_item_img);
+            catName = itemView.findViewById(R.id.cat_item_name);
+            catDesc = itemView.findViewById(R.id.cat_item_desc);
         }
     }
 }
