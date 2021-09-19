@@ -17,7 +17,7 @@ import com.dv.grocery.R;
 import com.dv.grocery.adapters.HomeCategoryAdapter;
 import com.dv.grocery.adapters.PopularAdapter;
 import com.dv.grocery.adapters.RecommendedAdapter;
-import com.dv.grocery.models.HomeCategoryModel;
+import com.dv.grocery.models.CategoryModel;
 import com.dv.grocery.models.ProductModel;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
     PopularAdapter popularAdapter;
 
     // Category
-    List<HomeCategoryModel> categoryList;
+    List<CategoryModel> categoryList;
     HomeCategoryAdapter categoryAdapter;
 
     // Recommend Products
@@ -98,8 +98,8 @@ public class HomeFragment extends Fragment {
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                        HomeCategoryModel homeCategoryModel = document.toObject(HomeCategoryModel.class);
-                        categoryList.add(homeCategoryModel);
+                        CategoryModel categoryModel = document.toObject(CategoryModel.class);
+                        categoryList.add(categoryModel);
                         categoryAdapter.notifyDataSetChanged();
                         hideProgressBar();
                     }

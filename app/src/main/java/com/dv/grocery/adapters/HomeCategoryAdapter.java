@@ -12,17 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.dv.grocery.R;
-import com.dv.grocery.models.HomeCategoryModel;
+import com.dv.grocery.models.CategoryModel;
 
 import java.util.List;
 
 public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapter.ViewHolder> {
     Context context;
-    List<HomeCategoryModel> categoryList;
+    List<CategoryModel> categoryList;
 
-    public HomeCategoryAdapter(Context context, List<HomeCategoryModel> homeCategoryModelList) {
+    public HomeCategoryAdapter(Context context, List<CategoryModel> categoryModelList) {
         this.context = context;
-        this.categoryList = homeCategoryModelList;
+        this.categoryList = categoryModelList;
     }
 
     @NonNull
