@@ -4,7 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginRight="12dp"
-    app:cardCornerRadius="8dp">
+    android:background="@drawable/home_category_border"
+    app:cardCornerRadius="12dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,8 +15,8 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/popular_product_img"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginBottom="4dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/placeholder"
@@ -36,19 +37,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
-                    android:singleLine="true"
+                    android:lines="2"
                     android:text="@string/popular_product"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/popular_product_desc"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginVertical="4dp"-->
-                <!--                    android:ellipsize="end"-->
-                <!--                    android:lines="2"-->
-                <!--                    android:text="@string/description" />-->
+                    android:textSize="15sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -64,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="50"
-                android:textColor="#c10017"
+                android:textColor="@color/dark_red"
                 android:textSize="14sp" />
 
             <TextView
@@ -72,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:text=".000đ"
-                android:textColor="#c10017"
+                android:textColor="@color/dark_red"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
@@ -82,10 +74,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="#727272"
+        android:background="@drawable/home_category_border"
         android:paddingHorizontal="4dp"
         android:paddingVertical="2dp"
         android:text="Sữa"
-        android:textColor="@color/white"
+        android:textColor="@color/dark_gray"
         android:textSize="11dp" />
 </androidx.cardview.widget.CardView>
