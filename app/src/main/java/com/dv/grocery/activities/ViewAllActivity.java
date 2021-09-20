@@ -1,4 +1,4 @@
-package com.dv.grocery;
+package com.dv.grocery.activities;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dv.grocery.R;
 import com.dv.grocery.adapters.ViewAllAdapter;
 import com.dv.grocery.models.ProductModel;
 import com.google.android.gms.tasks.Task;
