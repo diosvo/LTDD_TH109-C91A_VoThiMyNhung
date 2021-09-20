@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.dv.grocery.R;
-import com.dv.grocery.ViewAlProductsByGroupActivity;
+import com.dv.grocery.ViewAllActivity;
 import com.dv.grocery.models.ProductModel;
 
 import java.util.List;
@@ -42,7 +42,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         holder.price.setText(productModelList.get(position).getPrice());
 
         holder.itemView.setOnClickListener(view -> {
-            Intent intent = new Intent(context, ViewAlProductsByGroupActivity.class);
+            Intent intent = new Intent(context, ViewAllActivity.class);
             intent.putExtra("group", productModelList.get(position).getGroup());
             context.startActivity(intent);
         });
