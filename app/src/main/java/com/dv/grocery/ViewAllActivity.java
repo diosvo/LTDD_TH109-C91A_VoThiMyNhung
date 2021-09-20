@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ViewAlProductsByGroupActivity extends AppCompatActivity {
+public class ViewAllActivity extends AppCompatActivity {
     TextView title;
 
     FirebaseFirestore db;
