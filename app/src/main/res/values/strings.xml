@@ -9,14 +9,13 @@
 
     <string name="home">Trang chủ</string>
     <string name="profile">Quản lý tài khoản</string>
-    <string name="category">Phân loại</string>
+    <string name="category">Danh mục</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="offers">Ưu đãi</string>
     <string name="new_products">Sản phẩm mới</string>
     <string name="cart">Giỏ hàng</string>
     <string name="orders">Đơn hàng</string>
     <string name="my_account">Tài khoản của tôi</string>
-    <string name="shopping">Shopping</string>
     <string name="see_all">Xem tất cả</string>
     <string name="popular_product">Popular Product</string>
     <string name="description">Description</string>
@@ -26,4 +25,9 @@
     <string name="your_name">Tên của bạn</string>
     <string name="phone_number">Số điện thoại</string>
     <string name="address">Địa chỉ</string>
+    <string name="group_meat">thit</string>
+    <string name="group_cleaning_house">cleaning_house</string>
+    <string name="popular_products">PopularProducts</string>
+    <string name="home_category">HomeCategory</string>
+    <string name="recommened_products">RecommendProducts</string>
 </resources>
