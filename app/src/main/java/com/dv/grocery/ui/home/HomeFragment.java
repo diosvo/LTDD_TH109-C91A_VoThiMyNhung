@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment {
         popularAdapter = new PopularAdapter(getActivity(), popularProductsList);
         popularRec.setAdapter(popularAdapter);
 
-        db.collection("PopularProducts")
+        db.collection(getString(R.string.popular_products))
             .get()
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment {
         categoryAdapter = new HomeCategoryAdapter(getActivity(), categoryList);
         categoryRec.setAdapter(categoryAdapter);
 
-        db.collection("HomeCategory")
+        db.collection(getString(R.string.home_category))
             .get()
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
         recommendedAdapter = new RecommendedAdapter(getActivity(), rcmProductsList);
         recommendedRec.setAdapter(recommendedAdapter);
 
-        db.collection("RecommendProducts")
+        db.collection(getString(R.string.recommened_products))
             .get()
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {

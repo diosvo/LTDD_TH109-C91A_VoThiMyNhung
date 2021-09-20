@@ -1,6 +1,8 @@
 package com.dv.grocery.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.dv.grocery.R;
+import com.dv.grocery.ViewAlProductsByGroupActivity;
 import com.dv.grocery.models.ProductModel;
 
 import java.util.List;
@@ -33,10 +36,16 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Glide.with(context).load(productModelList.get(position).getImage()).into(holder.popImage);
         holder.name.setText(productModelList.get(position).getName());
         holder.price.setText(productModelList.get(position).getPrice());
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ViewAlProductsByGroupActivity.class);
+            intent.putExtra("group", productModelList.get(position).getGroup());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -44,7 +53,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHold
         return productModelList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView popImage;
         TextView name, price;
 
