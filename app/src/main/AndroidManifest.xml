@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DGrocery">
         <activity
+            android:name=".activities.DetailsActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.ViewAllActivity"
             android:exported="true" />
         <activity
