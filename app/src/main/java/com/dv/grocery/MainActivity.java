@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dv.grocery.activities.HomeActivity;
+import com.dv.grocery.activities.LoginActivity;
+import com.dv.grocery.activities.RegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {

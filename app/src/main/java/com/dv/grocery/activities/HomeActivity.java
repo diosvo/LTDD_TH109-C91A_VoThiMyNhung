@@ -1,4 +1,4 @@
-package com.dv.grocery;
+package com.dv.grocery.activities;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.dv.grocery.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 

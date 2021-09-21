@@ -1,6 +1,8 @@
 package com.dv.grocery.models;
 
-public class ProductModel {
+import java.io.Serializable;
+
+public class ProductModel implements Serializable {
     String name;
     String description;
     String price;
