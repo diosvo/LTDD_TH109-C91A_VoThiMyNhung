@@ -7,38 +7,33 @@
     tools:context=".activities.DetailsActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/view_all_toolbar"
+        android:id="@+id/detail_toolbar"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:background="@color/primary"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Chi tiết sản phẩm"
-        app:titleTextColor="@color/white"
-        tools:ignore="MissingConstraints" />
+        app:title="Thông tin sản phẩm"
+        app:titleTextColor="@color/white" />
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="184dp"
         android:orientation="vertical"
         android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_all_toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/detail_toolbar">
 
         <ImageView
             android:id="@+id/detail_img"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginTop="4dp"
             android:padding="24dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/placeholder" />
+            android:src="@mipmap/placeholder"
+            tools:ignore="ImageContrastCheck" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,7 +51,8 @@
                 android:text="20"
                 android:textColor="@color/dark_red"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -81,6 +77,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/black"
+            android:text="Miêu tả sản phẩm: " />
+
+        <TextView
             android:id="@+id/detail_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,7 +105,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/detail_add_to_cart"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
@@ -125,7 +128,7 @@
 
         <Button
             android:id="@+id/detail_minus"
-            android:layout_width="44dp"
+            android:layout_width="48dp"
             android:layout_height="48dp"
             android:backgroundTint="@color/secondary"
             android:gravity="center"
@@ -149,8 +152,9 @@
             android:backgroundTint="@color/secondary"
             android:gravity="center"
             android:text="+"
-            android:textColor="@color/dark_gray"
-            android:textSize="18sp" />
+            android:textColor="#78909C"
+            android:textSize="18sp"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
