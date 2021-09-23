@@ -22,11 +22,11 @@ public class CartModel {
         this.totalQuantity = totalQuantity;
     }
 
-    public String productImage() {
+    public String getProductImage() {
         return productImage;
     }
 
-    public void productImage(String productImage) {
+    public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
 
