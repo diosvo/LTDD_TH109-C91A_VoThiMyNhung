@@ -1,6 +1,8 @@
 package com.dv.grocery.activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import java.util.Objects;
 
 public class ViewAllActivity extends AppCompatActivity {
     TextView title;
+    ProgressBar progressBar;
 
     FirebaseFirestore db;
     RecyclerView recyclerView;
@@ -31,12 +34,14 @@ public class ViewAllActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all);
+        progressBar = (ProgressBar) findViewById(R.id.view_all_progress_bar);
 
         title = findViewById(R.id.view_all_title);
         db = FirebaseFirestore.getInstance();
 
         String group = getIntent().getStringExtra("group");
         recyclerView = findViewById(R.id.view_all_rec);
+        showProgressBar();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         productModelList = new ArrayList<>();
@@ -101,6 +106,19 @@ public class ViewAllActivity extends AppCompatActivity {
             productModelList.add(productModel);
             title.setText(productModel.getType_name());
             viewAllAdapter.notifyDataSetChanged();
+            hideProgressBar();
         }
+    }
+
+    private void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+        title.setVisibility(View.GONE);
+    }
+
+    private void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
+        title.setVisibility(View.VISIBLE);
     }
 }
