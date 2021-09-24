@@ -1,6 +1,7 @@
 package com.dv.grocery.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +21,7 @@ import java.util.List;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     Context context;
     List<CartModel> cartModelList;
+    int totalPrice = 0;
 
     public CartAdapter(Context context, List<CartModel> cartModelList) {
         this.context = context;
@@ -37,7 +40,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.name.setText(cartModelList.get(position).getProductName());
         holder.price.setText(cartModelList.get(position).getProductPrice());
         holder.quantity.setText(cartModelList.get(position).getTotalQuantity());
-//        holder.totalPrice.setText(String.valueOf(cartModelList.get(position).getTotalPrice()));
+
+        // Passing total to Cart Fragment
+        totalPrice = totalPrice + cartModelList.get(position).getTotalPrice();
+        Intent intent = new Intent("totalAmount");
+        intent.putExtra("totalAmount", totalPrice);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
     @Override

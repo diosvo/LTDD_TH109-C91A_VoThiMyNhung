@@ -1,16 +1,21 @@
 package com.dv.grocery;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dv.grocery.activities.ViewAllActivity;
 import com.dv.grocery.adapters.CartAdapter;
 import com.dv.grocery.models.CartModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,7 +31,7 @@ import java.util.List;
 public class MyCartFragment extends Fragment {
     FirebaseFirestore db;
     FirebaseAuth auth;
-
+    TextView total;
     RecyclerView recyclerView;
     CartAdapter cartAdapter;
     List<CartModel> cartModelList;
@@ -49,6 +54,9 @@ public class MyCartFragment extends Fragment {
         cartAdapter = new CartAdapter(getActivity(), cartModelList);
         recyclerView.setAdapter(cartAdapter);
 
+        total = root.findViewById(R.id.cart_total_price);
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(MessageReceiver, new IntentFilter("totalAmount"));
+
         db.collection("AddToCart")
             .document(auth.getCurrentUser().getUid())
             .collection("CurrentUser")
@@ -56,7 +64,7 @@ public class MyCartFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (DocumentSnapshot documentSnapshot: task.getResult()) {
+                    for (DocumentSnapshot documentSnapshot : task.getResult()) {
                         CartModel cartModel = documentSnapshot.toObject(CartModel.class);
                         cartModelList.add(cartModel);
                         cartAdapter.notifyDataSetChanged();
@@ -67,4 +75,12 @@ public class MyCartFragment extends Fragment {
 
         return root;
     }
+
+    private BroadcastReceiver MessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int totalBill = intent.getIntExtra("totalAmount", 0);
+            total.setText("" + totalBill);
+        }
+    };
 }
