@@ -45,6 +45,9 @@ public class ViewAllActivity extends AppCompatActivity {
 
         getMeat(group);
         getCleaningHouse(group);
+        getPersonalTakeCare(group);
+        getNoddle(group);
+        getOil(group);
     }
 
     private void getMeat(String group) {
@@ -60,6 +63,33 @@ public class ViewAllActivity extends AppCompatActivity {
         if (group != null && group.equalsIgnoreCase(getString(R.string.group_cleaning_house))) {
             db.collection(getString(R.string.popular_products))
                 .whereEqualTo("group", getString(R.string.group_cleaning_house))
+                .get()
+                .addOnCompleteListener(task -> getResult(task));
+        }
+    }
+
+    private void getPersonalTakeCare(String group) {
+        if (group != null && group.equalsIgnoreCase(getString(R.string.cham_soc_ca_nhan))) {
+            db.collection(getString(R.string.popular_products))
+                .whereEqualTo("group", getString(R.string.cham_soc_ca_nhan))
+                .get()
+                .addOnCompleteListener(task -> getResult(task));
+        }
+    }
+
+    private void getNoddle(String group) {
+        if (group != null && group.equalsIgnoreCase(getString(R.string.mi_goi_an_lien))) {
+            db.collection(getString(R.string.popular_products))
+                .whereEqualTo("group", getString(R.string.mi_goi_an_lien))
+                .get()
+                .addOnCompleteListener(task -> getResult(task));
+        }
+    }
+
+    private void getOil(String group) {
+        if (group != null && group.equalsIgnoreCase(getString(R.string.dau_an))) {
+            db.collection(getString(R.string.popular_products))
+                .whereEqualTo("group", getString(R.string.dau_an))
                 .get()
                 .addOnCompleteListener(task -> getResult(task));
         }

@@ -40,7 +40,7 @@ public class CategoryFragment extends Fragment {
         categoryAdapter = new NavCategoryAdapter(getActivity(), categoryList);
         categoryRec.setAdapter(categoryAdapter);
 
-        db.collection("NavCategory")
+        db.collection(getString(R.string.nav_category))
             .get()
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {

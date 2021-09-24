@@ -29,5 +29,9 @@
     <string name="group_cleaning_house">ve_sinh_nha_cua</string>
     <string name="popular_products">PopularProducts</string>
     <string name="home_category">HomeCategory</string>
-    <string name="recommened_products">RecommendProducts</string>
+    <string name="recommended_products">RecommendProducts</string>
+    <string name="nav_category">NavCategory</string>
+    <string name="cham_soc_ca_nhan">cham_soc_ca_nhan</string>
+    <string name="mi_goi_an_lien">mi_goi_an_lien</string>
+    <string name="dau_an">dau_an</string>
 </resources>
