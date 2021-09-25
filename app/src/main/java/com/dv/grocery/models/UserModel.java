@@ -4,6 +4,9 @@ public class UserModel {
     String fullName;
     String email;
     String password;
+    String profileImage;
+
+    public UserModel () {}
 
     public String getFullName() {
         return fullName;
@@ -27,6 +30,14 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
     public UserModel(String fullName, String email, String password) {
