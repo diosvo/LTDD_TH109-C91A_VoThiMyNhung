@@ -83,6 +83,9 @@ public class MyCartFragment extends Fragment {
             if (task.isSuccessful()) {
                 for (DocumentSnapshot documentSnapshot : task.getResult()) {
                     CartModel cartModel = documentSnapshot.toObject(CartModel.class);
+                    String documentId = documentSnapshot.getId();
+
+                    cartModel.setDocumentId(documentId);
                     cartModelList.add(cartModel);
                     cartAdapter.notifyDataSetChanged();
                     hideProgressBar();

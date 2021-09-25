@@ -10,6 +10,7 @@ public class CartModel implements Serializable {
     String currentTime;
     int totalPrice;
     String totalQuantity;
+    String documentId;
 
     public CartModel() {
     }
@@ -78,5 +79,14 @@ public class CartModel implements Serializable {
 
     public void setTotalQuantity(String totalQuantity) {
         this.totalQuantity = totalQuantity;
+    }
+
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 }
