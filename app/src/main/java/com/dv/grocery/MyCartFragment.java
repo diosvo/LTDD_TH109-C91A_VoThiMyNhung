@@ -8,25 +8,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dv.grocery.activities.PlacedOrderActivity;
 import com.dv.grocery.adapters.CartAdapter;
 import com.dv.grocery.models.CartModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +34,20 @@ public class MyCartFragment extends Fragment {
     FirebaseAuth auth;
 
     TextView total;
+    Button payment;
     ProgressBar progressBar;
     LinearLayout cart_bottom_bar;
 
     RecyclerView recyclerView;
     CartAdapter cartAdapter;
     List<CartModel> cartModelList;
+    private final BroadcastReceiver MessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int totalBill = intent.getIntExtra("totalAmount", 0);
+            total.setText("" + totalBill);
+        }
+    };
 
     public MyCartFragment() {
         // Required empty public constructor
@@ -57,6 +64,8 @@ public class MyCartFragment extends Fragment {
         recyclerView = root.findViewById(R.id.rec_cart_item);
         progressBar = root.findViewById(R.id.cart_progress_bar);
         cart_bottom_bar = root.findViewById(R.id.cart_bottom_bar);
+        payment = root.findViewById(R.id.cart_payment);
+
         showProgressBar();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -67,33 +76,31 @@ public class MyCartFragment extends Fragment {
         total = root.findViewById(R.id.cart_total_price);
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(MessageReceiver, new IntentFilter("totalAmount"));
 
-        db.collection("AddToCart")
+        db.collection("CurrentUser")
             .document(auth.getCurrentUser().getUid())
-            .collection("CurrentUser")
-            .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (DocumentSnapshot documentSnapshot : task.getResult()) {
-                        CartModel cartModel = documentSnapshot.toObject(CartModel.class);
-                        cartModelList.add(cartModel);
-                        cartAdapter.notifyDataSetChanged();
-                        hideProgressBar();
-                    }
+            .collection("AddToCart")
+            .get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (DocumentSnapshot documentSnapshot : task.getResult()) {
+                    CartModel cartModel = documentSnapshot.toObject(CartModel.class);
+                    cartModelList.add(cartModel);
+                    cartAdapter.notifyDataSetChanged();
+                    hideProgressBar();
                 }
             }
         });
+        Pay();
 
         return root;
     }
 
-    private BroadcastReceiver MessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            int totalBill = intent.getIntExtra("totalAmount", 0);
-            total.setText("" + totalBill);
-        }
-    };
+    private void Pay() {
+        payment.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), PlacedOrderActivity.class);
+            intent.putExtra("productList", (Serializable) cartModelList);
+            startActivity(intent);
+        });
+    }
 
     private void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);

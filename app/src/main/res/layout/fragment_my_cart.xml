@@ -102,7 +102,7 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/detail_add_to_cart"
+                    android:id="@+id/cart_payment"
                     android:layout_width="150dp"
                     android:layout_height="48dp"
                     android:background="@drawable/button_main"

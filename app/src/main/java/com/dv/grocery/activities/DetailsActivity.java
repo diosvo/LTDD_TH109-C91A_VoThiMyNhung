@@ -108,9 +108,9 @@ public class DetailsActivity extends AppCompatActivity {
             cartMap.put("totalPrice", totalPrice);
             cartMap.put("productImage", productModel.getImage());
 
-            db.collection("AddToCart")
+            db.collection("CurrentUser")
                 .document(auth.getCurrentUser().getUid())
-                .collection("CurrentUser")
+                .collection("AddToCart")
                 .add(cartMap)
                 .addOnCompleteListener(task -> {
                     Toast.makeText(DetailsActivity.this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
