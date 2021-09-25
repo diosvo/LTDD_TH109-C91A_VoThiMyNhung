@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,12 +28,16 @@ public class CategoryFragment extends Fragment {
     NavCategoryAdapter categoryAdapter;
 
     FirebaseFirestore db;
+    ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_category, container, false);
 
         categoryRec = root.findViewById(R.id.nav_rec_category);
+        progressBar = root.findViewById(R.id.nav_category_progress_bar);
+        showProgressBar();
+
         db = FirebaseFirestore.getInstance();
 
         categoryRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
@@ -40,7 +45,7 @@ public class CategoryFragment extends Fragment {
         categoryAdapter = new NavCategoryAdapter(getActivity(), categoryList);
         categoryRec.setAdapter(categoryAdapter);
 
-        db.collection("NavCategory")
+        db.collection(getString(R.string.nav_category))
             .get()
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
@@ -48,6 +53,7 @@ public class CategoryFragment extends Fragment {
                         CategoryModel categoryModel = document.toObject(CategoryModel.class);
                         categoryList.add(categoryModel);
                         categoryAdapter.notifyDataSetChanged();
+                        hideProgressBar();
                     }
                 } else {
                     Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
@@ -55,5 +61,15 @@ public class CategoryFragment extends Fragment {
             });
 
         return root;
+    }
+
+    private void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+        categoryRec.setVisibility(View.GONE);
+    }
+
+    private void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
+        categoryRec.setVisibility(View.VISIBLE);
     }
 }

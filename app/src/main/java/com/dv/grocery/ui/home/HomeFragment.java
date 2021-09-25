@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment {
         recommendedAdapter = new RecommendedAdapter(getActivity(), rcmProductsList);
         recommendedRec.setAdapter(recommendedAdapter);
 
-        db.collection(getString(R.string.recommened_products))
+        db.collection(getString(R.string.recommended_products))
             .get()
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {

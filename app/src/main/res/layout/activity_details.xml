@@ -112,6 +112,7 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_main"
             android:text="Thêm vào giỏ"
+            android:textAllCaps="false"
             android:textAlignment="center"
             android:textColor="@color/white" />
     </RelativeLayout>
