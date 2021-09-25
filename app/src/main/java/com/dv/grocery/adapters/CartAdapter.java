@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,10 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.dv.grocery.R;
 import com.dv.grocery.models.CartModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -71,13 +66,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     private void onDeleteItem(ViewHolder holder, int position) {
         holder.deleteBtn.setOnClickListener(view ->
             db.collection("CurrentUser")
-            .document(auth.getCurrentUser().getUid())
-            .collection("AddToCart")
-            .document(cartModelList.get(position).getDocumentId())
-            .delete()
-            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
+                .document(auth.getCurrentUser().getUid())
+                .collection("AddToCart")
+                .document(cartModelList.get(position).getDocumentId())
+                .delete()
+                .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         cartModelList.remove(cartModelList.get(position));
                         notifyDataSetChanged();
@@ -85,8 +78,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     } else {
                         Toast.makeText(context, "Đã có lỗi: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
-                }
-            }));
+                }));
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

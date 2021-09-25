@@ -1,9 +1,12 @@
 package com.dv.grocery.ui.home;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -17,10 +20,15 @@ import com.dv.grocery.R;
 import com.dv.grocery.adapters.HomeCategoryAdapter;
 import com.dv.grocery.adapters.PopularAdapter;
 import com.dv.grocery.adapters.RecommendedAdapter;
+import com.dv.grocery.adapters.ViewAllAdapter;
 import com.dv.grocery.models.CategoryModel;
 import com.dv.grocery.models.ProductModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +53,16 @@ public class HomeFragment extends Fragment {
     List<ProductModel> rcmProductsList;
     RecommendedAdapter recommendedAdapter;
 
+    // Search View
+    EditText searchText;
+    private List<ProductModel> searchList;
+    private RecyclerView searchRec;
+    private ViewAllAdapter viewAllAdapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
         popularRec = root.findViewById(R.id.popular_products);
         categoryRec = root.findViewById(R.id.home_category);
         recommendedRec = root.findViewById(R.id.recommend_products);
@@ -61,6 +76,7 @@ public class HomeFragment extends Fragment {
         getPopularProducts();
         getHomeCategory();
         getRecommendProducts();
+        searchProducts(root);
 
         return root;
     }
@@ -129,6 +145,59 @@ public class HomeFragment extends Fragment {
                     Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
                 }
             });
+    }
+
+    private void searchProducts(View root) {
+        searchText = root.findViewById(R.id.search_box);
+        searchRec = root.findViewById(R.id.search_rec);
+        searchList = new ArrayList<>();
+        viewAllAdapter = new ViewAllAdapter(getContext(), searchList);
+
+        searchRec.setLayoutManager(new LinearLayoutManager(getContext()));
+        searchRec.setAdapter(viewAllAdapter);
+        searchRec.setHasFixedSize(true);
+
+        searchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String group = editable.toString();
+                if (group.isEmpty()) {
+                    searchList.clear();
+                    viewAllAdapter.notifyDataSetChanged();
+                } else {
+                    if (!group.isEmpty()) {
+                        db.collection(getString(R.string.popular_products))
+                            .whereEqualTo("group", group)
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful() && task.getResult() != null) {
+                                        searchList.clear();
+                                        viewAllAdapter.notifyDataSetChanged();
+
+                                        for (DocumentSnapshot doc : task.getResult().getDocuments()) {
+                                            ProductModel productModel = doc.toObject(ProductModel.class);
+                                            searchList.add(productModel);
+                                            viewAllAdapter.notifyDataSetChanged();
+                                        }
+                                    }
+                                }
+                            });
+                    }
+                }
+            }
+        });
     }
 
     private void showProgressBar() {
