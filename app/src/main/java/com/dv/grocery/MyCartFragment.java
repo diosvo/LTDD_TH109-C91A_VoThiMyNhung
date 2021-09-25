@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +33,11 @@ import java.util.List;
 public class MyCartFragment extends Fragment {
     FirebaseFirestore db;
     FirebaseAuth auth;
+
     TextView total;
+    ProgressBar progressBar;
+    LinearLayout cart_bottom_bar;
+
     RecyclerView recyclerView;
     CartAdapter cartAdapter;
     List<CartModel> cartModelList;
@@ -47,7 +53,11 @@ public class MyCartFragment extends Fragment {
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
+
         recyclerView = root.findViewById(R.id.rec_cart_item);
+        progressBar = root.findViewById(R.id.cart_progress_bar);
+        cart_bottom_bar = root.findViewById(R.id.cart_bottom_bar);
+        showProgressBar();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         cartModelList = new ArrayList<>();
@@ -68,6 +78,7 @@ public class MyCartFragment extends Fragment {
                         CartModel cartModel = documentSnapshot.toObject(CartModel.class);
                         cartModelList.add(cartModel);
                         cartAdapter.notifyDataSetChanged();
+                        hideProgressBar();
                     }
                 }
             }
@@ -83,4 +94,16 @@ public class MyCartFragment extends Fragment {
             total.setText("" + totalBill);
         }
     };
+
+    private void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+        cart_bottom_bar.setVisibility(View.GONE);
+    }
+
+    private void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
+        cart_bottom_bar.setVisibility(View.VISIBLE);
+    }
 }
