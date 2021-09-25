@@ -1,9 +1,6 @@
 package com.dv.grocery;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,13 +37,6 @@ public class MyCartFragment extends Fragment {
     RecyclerView recyclerView;
     CartAdapter cartAdapter;
     List<CartModel> cartModelList;
-    private final BroadcastReceiver MessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            int totalBill = intent.getIntExtra("totalAmount", 0);
-            total.setText("" + totalBill);
-        }
-    };
 
     public MyCartFragment() {
         // Required empty public constructor
@@ -74,7 +63,6 @@ public class MyCartFragment extends Fragment {
         recyclerView.setAdapter(cartAdapter);
 
         total = root.findViewById(R.id.cart_total_price);
-        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(MessageReceiver, new IntentFilter("totalAmount"));
 
         db.collection("CurrentUser")
             .document(auth.getCurrentUser().getUid())
@@ -90,11 +78,22 @@ public class MyCartFragment extends Fragment {
                     cartAdapter.notifyDataSetChanged();
                     hideProgressBar();
                 }
+
+                calculateTotal(cartModelList);
             }
         });
         Pay();
 
         return root;
+    }
+
+    private void calculateTotal(List<CartModel> cartModelList) {
+        int totalAmount = 0;
+        for (CartModel model : cartModelList) {
+            totalAmount += model.getTotalPrice();
+        }
+
+        total.setText("" + totalAmount);
     }
 
     private void Pay() {
