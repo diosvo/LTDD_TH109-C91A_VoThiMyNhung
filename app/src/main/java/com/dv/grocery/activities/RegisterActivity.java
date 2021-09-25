@@ -13,7 +13,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dv.grocery.R;
+import com.dv.grocery.models.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     Button register;
@@ -21,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView login;
 
     FirebaseAuth auth;
+    FirebaseDatabase database;
     ProgressBar progressBar;
 
     @Override
@@ -35,6 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void initValues() {
         auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
 
@@ -85,6 +90,10 @@ public class RegisterActivity extends AppCompatActivity {
         // Create User
         auth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                UserModel userModel = new UserModel(full_name, userEmail, userPassword);
+                String id = task.getResult().getUser().getUid();
+                database.getReference().child("Users").child(id).setValue(userModel);
+
                 progressBar.setVisibility((View.GONE));
                 Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
