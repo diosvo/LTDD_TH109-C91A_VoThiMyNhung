@@ -68,22 +68,22 @@ public class RegisterActivity extends AppCompatActivity {
         String userPassword = password.getText().toString();
 
         if (TextUtils.isEmpty((full_name))) {
-            Toast.makeText(this, "Full Name is required.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Trường Tên của bạn là bắt buộc.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (TextUtils.isEmpty((userEmail))) {
-            Toast.makeText(this, "Email is required.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Trường Email là bắt buộc.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Check password length
         if (TextUtils.isEmpty((userPassword))) {
-            Toast.makeText(this, "Password is required.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Trường Mật khẩu là bắt buộc.", Toast.LENGTH_SHORT).show();
             return;
         }
         if (userPassword.length() < 6) {
-            Toast.makeText(this, "Password must be at least 6 characters.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mật khẩu phải có tối thiểu 6 ký tự.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -95,11 +95,11 @@ public class RegisterActivity extends AppCompatActivity {
                 database.getReference().child("Users").child(id).setValue(userModel);
 
                 progressBar.setVisibility((View.GONE));
-                Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Bạn đã đăng ký thành công!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             } else {
                 progressBar.setVisibility((View.GONE));
-                Toast.makeText(RegisterActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Đã có lỗi xảy ra: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

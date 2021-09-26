@@ -62,17 +62,17 @@ public class LoginActivity extends AppCompatActivity {
         String userPassword = password.getText().toString();
 
         if (TextUtils.isEmpty((userEmail))) {
-            Toast.makeText(this, "Email is required.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Trường Email là bắt buộc.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Check password length
         if (TextUtils.isEmpty((userPassword))) {
-            Toast.makeText(this, "Password is required.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Trường Mật khẩu là bắt buộc.", Toast.LENGTH_SHORT).show();
             return;
         }
         if (userPassword.length() < 6) {
-            Toast.makeText(this, "Password must be at least 6 characters.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Mật khẩu phải có tối thiểu 6 ký tự.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -81,12 +81,12 @@ public class LoginActivity extends AppCompatActivity {
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(LoginActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                     finish();
                 } else {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(LoginActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Đã có lỗi xảy ra: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
     }
