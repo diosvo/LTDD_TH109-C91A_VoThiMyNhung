@@ -72,7 +72,12 @@ public class ProfileFragment extends Fragment {
 
     private void onUpdateProfile() {
         updateBtn.setOnClickListener(view -> {
+            updateField("phoneNumber", phone);
+            updateField("email", email);
+            updateField("fullName", name);
+            updateField("address", address);
 
+            Toast.makeText(getContext(), "Cập nhật thông tin thành công.", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -85,6 +90,10 @@ public class ProfileFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     UserModel userModel = snapshot.getValue(UserModel.class);
                     Glide.with(getContext()).load(userModel.getProfileImage()).into(image);
+                    name.setText(userModel.getFullName());
+                    email.setText(userModel.getEmail());
+                    phone.setText(userModel.getPhoneNumber());
+                    address.setText(userModel.getAddress());
                 }
 
                 @Override
@@ -117,5 +126,13 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(getContext(), "Hình ảnh đã được cập nhật.", Toast.LENGTH_SHORT).show();
                 }));
         }
+    }
+
+    private void updateField(String fieldName, EditText fieldValue) {
+        db.getReference()
+            .child("Users")
+            .child(auth.getUid())
+            .child(fieldName)
+            .setValue(fieldValue.getText().toString());
     }
 }

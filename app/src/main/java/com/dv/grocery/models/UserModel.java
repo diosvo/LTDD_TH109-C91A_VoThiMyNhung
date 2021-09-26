@@ -5,8 +5,17 @@ public class UserModel {
     String email;
     String password;
     String profileImage;
+    String phoneNumber;
+    String address;
 
-    public UserModel () {}
+    public UserModel() {
+    }
+
+    public UserModel(String fullName, String email, String password) {
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getFullName() {
         return fullName;
@@ -32,6 +41,14 @@ public class UserModel {
         this.password = password;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getProfileImage() {
         return profileImage;
     }
@@ -40,9 +57,11 @@ public class UserModel {
         this.profileImage = profileImage;
     }
 
-    public UserModel(String fullName, String email, String password) {
-        this.fullName = fullName;
-        this.email = email;
-        this.password = password;
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
