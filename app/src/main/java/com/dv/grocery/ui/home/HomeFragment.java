@@ -23,12 +23,9 @@ import com.dv.grocery.adapters.RecommendedAdapter;
 import com.dv.grocery.adapters.ViewAllAdapter;
 import com.dv.grocery.models.CategoryModel;
 import com.dv.grocery.models.ProductModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -170,27 +167,24 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                String group = editable.toString();
-                if (group.isEmpty()) {
+                String name = editable.toString();
+                if (name.isEmpty()) {
                     searchList.clear();
                     viewAllAdapter.notifyDataSetChanged();
                 } else {
-                    if (!group.isEmpty()) {
+                    if (!name.isEmpty()) {
                         db.collection(getString(R.string.popular_products))
-                            .whereEqualTo("group", group)
+                            .whereEqualTo("group", name)
                             .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful() && task.getResult() != null) {
-                                        searchList.clear();
-                                        viewAllAdapter.notifyDataSetChanged();
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful() && task.getResult() != null) {
+                                    searchList.clear();
+                                    viewAllAdapter.notifyDataSetChanged();
 
-                                        for (DocumentSnapshot doc : task.getResult().getDocuments()) {
-                                            ProductModel productModel = doc.toObject(ProductModel.class);
-                                            searchList.add(productModel);
-                                            viewAllAdapter.notifyDataSetChanged();
-                                        }
+                                    for (DocumentSnapshot doc : task.getResult().getDocuments()) {
+                                        ProductModel productModel = doc.toObject(ProductModel.class);
+                                        searchList.add(productModel);
+                                        viewAllAdapter.notifyDataSetChanged();
                                     }
                                 }
                             });
