@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +33,8 @@ public class ProfileFragment extends Fragment {
     EditText name, email, address, phone;
     CircleImageView image;
     Button updateBtn;
+    ProgressBar loading;
+    LinearLayout content;
 
     FirebaseDatabase db;
     FirebaseAuth auth;
@@ -46,6 +50,7 @@ public class ProfileFragment extends Fragment {
         init(root);
         uploadImage();
         onUpdateProfile();
+        showLoading();
         updateFromDatabase();
 
         return root;
@@ -54,6 +59,8 @@ public class ProfileFragment extends Fragment {
     private void init(View root) {
         image = root.findViewById(R.id.profile_image);
         updateBtn = root.findViewById(R.id.profile_update_btn);
+        loading = root.findViewById(R.id.profile_loading);
+        content = root.findViewById(R.id.profile_content);
 
         name = root.findViewById(R.id.profile_name);
         email = root.findViewById(R.id.profile_email);
@@ -94,6 +101,7 @@ public class ProfileFragment extends Fragment {
                     email.setText(userModel.getEmail());
                     phone.setText(userModel.getPhoneNumber());
                     address.setText(userModel.getAddress());
+                    hideLoading();
                 }
 
                 @Override
@@ -134,5 +142,17 @@ public class ProfileFragment extends Fragment {
             .child(auth.getUid())
             .child(fieldName)
             .setValue(fieldValue.getText().toString());
+    }
+
+    private void showLoading() {
+        loading.setVisibility(View.VISIBLE);
+        image.setVisibility(View.GONE);
+        content.setVisibility(View.GONE);
+    }
+
+    private void hideLoading() {
+        loading.setVisibility(View.GONE);
+        image.setVisibility(View.VISIBLE);
+        content.setVisibility(View.VISIBLE);
     }
 }

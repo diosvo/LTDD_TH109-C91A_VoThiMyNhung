@@ -8,6 +8,14 @@
     android:padding="16dp"
     tools:context=".ui.profile.ProfileFragment">
 
+    <ProgressBar
+        android:id="@+id/profile_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/primary"
+        android:textAlignment="center" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,18 +23,17 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@mipmap/blank_profile"
-            app:civ_border_width="2dp"
-            app:civ_border_color="@color/white"/>
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/profile_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
