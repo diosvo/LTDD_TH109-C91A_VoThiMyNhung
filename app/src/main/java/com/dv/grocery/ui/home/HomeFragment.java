@@ -148,7 +148,6 @@ public class HomeFragment extends Fragment {
                     viewAllAdapter.notifyDataSetChanged();
                 } else {
                     db.collection(getString(R.string.popular_products))
-                        .whereEqualTo("group", name)
                         .get()
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful() && task.getResult() != null) {
@@ -157,8 +156,10 @@ public class HomeFragment extends Fragment {
 
                                 for (DocumentSnapshot doc : task.getResult().getDocuments()) {
                                     ProductModel productModel = doc.toObject(ProductModel.class);
-                                    searchList.add(productModel);
-                                    viewAllAdapter.notifyDataSetChanged();
+                                    if (productModel.getSearch_kw().toLowerCase().contains(name)) {
+                                        searchList.add(productModel);
+                                        viewAllAdapter.notifyDataSetChanged();
+                                    }
                                 }
                             }
                         });
