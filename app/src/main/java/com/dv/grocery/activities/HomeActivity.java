@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-            R.id.nav_home, R.id.nav_category, R.id.nav_profile, R.id.nav_offers, R.id.nav_new_products, R.id.nav_orders, R.id.nav_cart)
+            R.id.nav_home, R.id.nav_category, R.id.nav_profile, R.id.nav_orders, R.id.nav_cart)
             .setOpenableLayout(drawer)
             .build();
 
