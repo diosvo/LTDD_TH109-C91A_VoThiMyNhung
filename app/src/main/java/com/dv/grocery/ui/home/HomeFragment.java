@@ -156,7 +156,8 @@ public class HomeFragment extends Fragment {
 
                                 for (DocumentSnapshot doc : task.getResult().getDocuments()) {
                                     ProductModel productModel = doc.toObject(ProductModel.class);
-                                    if (productModel.getSearch_kw().toLowerCase().contains(name)) {
+                                    String searchTerm = productModel.getSearch_kw() + productModel.getPrice();
+                                    if (searchTerm.toLowerCase().contains(name.toLowerCase())) {
                                         searchList.add(productModel);
                                         viewAllAdapter.notifyDataSetChanged();
                                     }
