@@ -34,7 +34,7 @@ public class ViewAllActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all);
-        progressBar = (ProgressBar) findViewById(R.id.view_all_progress_bar);
+        progressBar = findViewById(R.id.view_all_progress_bar);
 
         title = findViewById(R.id.view_all_title);
         db = FirebaseFirestore.getInstance();

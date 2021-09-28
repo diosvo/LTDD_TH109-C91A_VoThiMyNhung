@@ -36,7 +36,7 @@ public class PlacedOrderActivity extends AppCompatActivity {
                 cartMap.put("currentDate", model.getCurrentDate());
                 cartMap.put("currentTime", model.getCurrentTime());
                 cartMap.put("totalQuantity", model.getTotalQuantity());
-                cartMap.put("totalPrice", model.getTotalQuantity());
+                cartMap.put("totalPrice", model.getTotalPrice());
 
                 db.collection("CurrentUser")
                     .document(auth.getCurrentUser().getUid())

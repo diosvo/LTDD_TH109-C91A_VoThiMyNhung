@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (auth.getCurrentUser() != null) {
             progressBar.setVisibility(View.VISIBLE);
-            Toast.makeText(this, "Đang đăng nhập....", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Đang đăng nhập...", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainActivity.this, HomeActivity.class));
             finish();
         }

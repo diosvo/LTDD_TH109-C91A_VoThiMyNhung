@@ -56,7 +56,7 @@ public class CategoryFragment extends Fragment {
                         hideProgressBar();
                     }
                 } else {
-                    Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Đã có lỗi xảy ra: " + task.getException(), Toast.LENGTH_LONG).show();
                 }
             });
 

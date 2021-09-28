@@ -76,7 +76,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                         notifyDataSetChanged();
                         Toast.makeText(context, "Đã xóa sản phẩm ra khỏi giỏ hàng.", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(context, "Đã có lỗi: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Đã có lỗi xảy ra: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }));
     }
