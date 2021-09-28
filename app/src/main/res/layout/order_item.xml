@@ -1,58 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="12dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/edit_text_bg"
         android:orientation="horizontal"
         android:padding="8dp">
 
-        <ImageView
-            android:id="@+id/cart_product_img"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:padding="12dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/placeholder" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <TextView
+                android:id="@+id/order_product_name"
                 android:layout_width="match_parent"
-                android:layout_marginBottom="4dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Tên sản phẩm"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="2dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/cart_product_name"
-                    android:layout_width="280dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:ellipsize="end"
-                    android:lines="2"
-                    android:text="Tên sản phẩm"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:id="@+id/cart_delete_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/ic_delete"
-                    android:backgroundTint="@color/dark_red"
-                    android:gravity="end" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:text="Thời gian đặt hàng: "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/order_current_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:text="21:31:20" />
+
+                <TextView
+                    android:id="@+id/order_current_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="27/09/2021" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,11 +68,18 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/cart_product_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tổng cộng: "
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/order_total_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="50"
-                        android:textColor="@color/black"
+                        android:textColor="@color/dark_red"
                         android:textSize="14sp" />
 
                     <TextView
@@ -76,19 +87,10 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:text=".000đ"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="x 1"
-                        android:textColor="@color/dark_gray"
+                        android:textColor="@color/dark_red"
                         android:textSize="14sp" />
                 </LinearLayout>
-
-
+                
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,11 +101,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Số lượng: "
-                        android:textColor="@color/black"
                         android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/cart_total_qty"
+                        android:id="@+id/order_total_qty"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
@@ -114,5 +115,4 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>

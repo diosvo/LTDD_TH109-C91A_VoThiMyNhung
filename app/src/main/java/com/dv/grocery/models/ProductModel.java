@@ -9,6 +9,7 @@ public class ProductModel implements Serializable {
     String image;
     String group;
     String type_name;
+    String search_kw;
 
     public ProductModel() {
     }
@@ -69,4 +70,13 @@ public class ProductModel implements Serializable {
     public void setType_name(String type_name) {
         this.type_name = type_name;
     }
+
+    public String getSearch_kw() {
+        return search_kw;
+    }
+
+    public void setSearch_kw(String search_kw) {
+        this.search_kw = search_kw;
+    }
+
 }

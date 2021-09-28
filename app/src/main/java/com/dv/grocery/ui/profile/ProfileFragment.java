@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +33,8 @@ public class ProfileFragment extends Fragment {
     EditText name, email, address, phone;
     CircleImageView image;
     Button updateBtn;
+    ProgressBar loading;
+    LinearLayout content;
 
     FirebaseDatabase db;
     FirebaseAuth auth;
@@ -46,6 +50,7 @@ public class ProfileFragment extends Fragment {
         init(root);
         uploadImage();
         onUpdateProfile();
+        showLoading();
         updateFromDatabase();
 
         return root;
@@ -54,6 +59,8 @@ public class ProfileFragment extends Fragment {
     private void init(View root) {
         image = root.findViewById(R.id.profile_image);
         updateBtn = root.findViewById(R.id.profile_update_btn);
+        loading = root.findViewById(R.id.profile_loading);
+        content = root.findViewById(R.id.profile_content);
 
         name = root.findViewById(R.id.profile_name);
         email = root.findViewById(R.id.profile_email);
@@ -72,7 +79,12 @@ public class ProfileFragment extends Fragment {
 
     private void onUpdateProfile() {
         updateBtn.setOnClickListener(view -> {
+            updateField("phoneNumber", phone);
+            updateField("email", email);
+            updateField("fullName", name);
+            updateField("address", address);
 
+            Toast.makeText(getContext(), "Cập nhật thông tin thành công.", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -85,6 +97,11 @@ public class ProfileFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     UserModel userModel = snapshot.getValue(UserModel.class);
                     Glide.with(getContext()).load(userModel.getProfileImage()).into(image);
+                    name.setText(userModel.getFullName());
+                    email.setText(userModel.getEmail());
+                    phone.setText(userModel.getPhoneNumber());
+                    address.setText(userModel.getAddress());
+                    hideLoading();
                 }
 
                 @Override
@@ -117,5 +134,25 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(getContext(), "Hình ảnh đã được cập nhật.", Toast.LENGTH_SHORT).show();
                 }));
         }
+    }
+
+    private void updateField(String fieldName, EditText fieldValue) {
+        db.getReference()
+            .child("Users")
+            .child(auth.getUid())
+            .child(fieldName)
+            .setValue(fieldValue.getText().toString());
+    }
+
+    private void showLoading() {
+        loading.setVisibility(View.VISIBLE);
+        image.setVisibility(View.GONE);
+        content.setVisibility(View.GONE);
+    }
+
+    private void hideLoading() {
+        loading.setVisibility(View.GONE);
+        image.setVisibility(View.VISIBLE);
+        content.setVisibility(View.VISIBLE);
     }
 }

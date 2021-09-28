@@ -15,16 +15,6 @@
             android:title="@string/category" />
 
         <item
-            android:id="@+id/nav_offers"
-            android:icon="@drawable/ic_offer"
-            android:title="@string/offers" />
-
-        <item
-            android:id="@+id/nav_new_products"
-            android:icon="@drawable/ic_products"
-            android:title="@string/new_products" />
-
-        <item
             android:id="@+id/nav_cart"
             android:icon="@drawable/ic_cart"
             android:title="@string/cart" />

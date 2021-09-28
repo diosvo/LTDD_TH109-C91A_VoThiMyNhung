@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.dv.grocery.R;
 import com.dv.grocery.models.CartModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -66,32 +64,24 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
     private void onDeleteItem(ViewHolder holder, int position) {
-        holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                db.collection("CurrentUser")
-                    .document(auth.getCurrentUser().getUid())
-                    .collection("AddToCart")
-                    .document(cartModelList.get(position).getDocumentId())
-                    .delete()
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                cartModelList.remove(cartModelList.get(position));
-                                notifyDataSetChanged();
-                                Toast.makeText(context, "Đã xóa sản phẩm ra khỏi giỏ hàng.", Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(context, "Đã có lỗi: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-            }
-        });
-
+        holder.deleteBtn.setOnClickListener(view ->
+            db.collection("CurrentUser")
+                .document(auth.getCurrentUser().getUid())
+                .collection("AddToCart")
+                .document(cartModelList.get(position).getDocumentId())
+                .delete()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        cartModelList.remove(cartModelList.get(position));
+                        notifyDataSetChanged();
+                        Toast.makeText(context, "Đã xóa sản phẩm ra khỏi giỏ hàng.", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(context, "Đã có lỗi xảy ra: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }));
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image, deleteBtn;
         TextView name, price, quantity, totalPrice;
 
