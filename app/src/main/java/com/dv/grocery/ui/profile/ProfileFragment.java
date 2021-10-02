@@ -3,6 +3,7 @@ package com.dv.grocery.ui.profile;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +97,9 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     UserModel userModel = snapshot.getValue(UserModel.class);
-                    Glide.with(getContext()).load(userModel.getProfileImage()).into(image);
+                    if (!TextUtils.isEmpty(userModel.getProfileImage())) {
+                        Glide.with(getContext()).load(userModel.getProfileImage()).into(image);
+                    }
                     name.setText(userModel.getFullName());
                     email.setText(userModel.getEmail());
                     phone.setText(userModel.getPhoneNumber());
