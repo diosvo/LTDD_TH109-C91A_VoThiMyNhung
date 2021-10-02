@@ -101,7 +101,9 @@ public class HomeActivity extends AppCompatActivity {
                     UserModel userModel = snapshot.getValue(UserModel.class);
                     name.setText(userModel.getFullName());
                     email.setText(userModel.getEmail());
-                    Glide.with(HomeActivity.this).load(userModel.getProfileImage()).into(image);
+                    if (!TextUtils.isEmpty(userModel.getProfileImage())) {
+                        Glide.with(HomeActivity.this).load(userModel.getProfileImage()).into(image);
+                    }
                 }
 
                 @Override
