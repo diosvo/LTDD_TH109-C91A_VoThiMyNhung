@@ -53,7 +53,11 @@ public class LoginActivity extends AppCompatActivity {
     private void onLogin() {
         login.setOnClickListener(view -> {
             loginUser();
-            progressBar.setVisibility((View.VISIBLE));
+            if (TextUtils.isEmpty(email.getText().toString())
+                && TextUtils.isEmpty(password.getText().toString())
+            ) {
+                progressBar.setVisibility((View.VISIBLE));
+            }
         });
     }
 
