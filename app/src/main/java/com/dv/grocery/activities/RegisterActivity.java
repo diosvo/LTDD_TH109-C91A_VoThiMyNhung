@@ -58,7 +58,12 @@ public class RegisterActivity extends AppCompatActivity {
     private void onRegister() {
         register.setOnClickListener(view -> {
             createUser();
-            progressBar.setVisibility((View.VISIBLE));
+            if (TextUtils.isEmpty(fullName.getText().toString())
+                && TextUtils.isEmpty(email.getText().toString())
+                && TextUtils.isEmpty(password.getText().toString())
+            ) {
+                progressBar.setVisibility((View.VISIBLE));
+            }
         });
     }
 
